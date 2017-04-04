@@ -37,17 +37,17 @@ Your objectives for the day is to:
 
 ### This
 
-- [ ] Watch these videos:
+- [x] Watch these videos:
   - https://shereef.wistia.com/medias/wfybhl2nmr
-  - https://shereef.wistia.com/medias/kqbedkmm13
+  - https://shereef.wistia.com/medias/kqbedkmm13funct
 - [x] Read [Undrestanding Javascrpt's This with Clarity and Mastery](http://javascriptissexy.com/understand-javascripts-this-with-clarity-and-master-it/)
-- [ ] Read [What is this in Javascript](http://www.code-sample.com/2015/06/what-is-this-in-javascript.html)
-- [ ] Complete the [Keyword "this" lesson][udacity]
+- [x] Read [What is this in Javascript](http://www.code-sample.com/2015/06/what-is-this-in-javascript.html)
+- [x] Complete the [Keyword "this" lesson][udacity]
 
 ### Stretch
 
 - [ ] Do exercises for Chapter 4 of [Object Oriented Javascript][oojs] (and maybe read it)
-- [ ] Study these [top 50 OOPs interview questions](http://career.guru99.com/top-50-oops-interview-questions/)
+- [x] Study these [top 50 OOPs interview questions](http://career.guru99.com/top-50-oops-interview-questions/)
 
 ## Day 3: Prototype and Inheritance
 
