@@ -26,7 +26,7 @@ var Engine = (function(global) {
         lastTime;
 
     canvas.width = 505;
-    canvas.height = 606;
+    canvas.height = 775;
     doc.body.appendChild(canvas);
 
     /* This function serves as the kickoff point for the game loop itself
@@ -80,19 +80,19 @@ var Engine = (function(global) {
      */
     function update(dt) {
         updateEntities(dt);
-        var checkCollision = function() {
-              //Iterate through allEnemies array. Reset if enemy within 40px.
-              var lives = 3
-              for (var i = 0; i < allEnemies.length; i++) {
-                  if (Math.abs(player.x - allEnemies[i].x) <= 50) {
-                      if (Math.abs(player.y - allEnemies[i].y) <= 50) {
-                          lives--
-                          player.reset();
-
-                      }
-                  }
-              }
-          }
+        // var checkCollision = function() {
+        //       //Iterate through allEnemies array. Reset if enemy within 40px.
+        //       var lives = 3
+        //       for (var i = 0; i < allEnemies.length; i++) {
+        //           if (Math.abs(player.x - allEnemies[i].x) <= 50) {
+        //               if (Math.abs(player.y - allEnemies[i].y) <= 50) {
+        //                   lives--
+        //                   player.reset();
+        //
+        //               }
+        //           }
+        //       }
+        //   }
     }
 
     /* This is called by the update function and loops through all of the
@@ -105,6 +105,9 @@ var Engine = (function(global) {
     function updateEntities(dt) {
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
+        });
+        allPaintbrush.forEach(function(paintbrush) {
+            paintbrush.update(dt);
         });
         player.update();
     }
@@ -120,14 +123,16 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
-                'images/water-block.png',   // Top row is water
-                'images/stone-block.png',   // Row 1 of 3 of stone
+                'images/water-block.png',
+                'images/water-block.png', // Top row is water
+                'images/stone-block.png',  // Row 1 of 3 of stone
+                'images/stone-block.png',  // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
                 'images/stone-block.png',   // Row 3 of 3 of stone
                 'images/grass-block.png',   // Row 1 of 2 of grass
                 'images/grass-block.png'    // Row 2 of 2 of grass
             ],
-            numRows = 6,
+            numRows = 8,
             numCols = 5,
             row, col;
 
@@ -162,6 +167,9 @@ var Engine = (function(global) {
         allEnemies.forEach(function(enemy) {
             enemy.render();
         });
+        allPaintbrush.forEach(function(paintbrush) {
+            paintbrush.render();
+        });
 
         player.render();
     }
@@ -183,7 +191,8 @@ var Engine = (function(global) {
         'images/water-block.png',
         'images/grass-block.png',
         'images/paint-palette.png',
-        'images/bob-ross.png'
+        'images/bob-ross.png',
+        'images/paintbrush.png'
     ]);
     Resources.onReady(init);
 
