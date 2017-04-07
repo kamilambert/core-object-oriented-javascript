@@ -84,9 +84,8 @@ class Player {
     this.lives = 3
     this.sprite = 'images/bob-ross.png'
   }
-
+//
   handleInput(e) {
-
     if (e === 'left' && this.x > 0) {
       this.x -= 50
     } else if (e === 'right' && this.x < 400) {
@@ -101,12 +100,31 @@ class Player {
           }
     }
   }
-
+  // See if any collisions happened. Give 1 point and reset if player reaches other side.
   update() {
-    checkCollision()
+    this.checkCollision()
     if (this.y < 100) {
-    this.score++
-    this.reset()
+      this.score++
+      this.reset()
+    }
+    }
+  //Iterate through allEnemies and allPaintbrush arrays. Reset if enemy hits either.
+  checkCollision() {
+    for (let i = 0; i < allEnemies.length; i++) {
+        if (Math.abs(player.x - allEnemies[i].x) <= 50) {
+          if (Math.abs(player.y - allEnemies[i].y) <= 50) {
+            player.lives--
+            player.reset()
+          }
+        }
+    }
+    for (let i = 0; i < allPaintbrush.length; i++) {
+        if (Math.abs(player.x - allPaintbrush[i].x) <= 100) {
+          if (Math.abs(player.y - allPaintbrush[i].y) <= 30){
+            player.lives--
+            player.reset()
+          }
+        }
     }
   }
   // Reset function to set player back to starting position
@@ -116,42 +134,20 @@ class Player {
   }
 }
 
-checkCollision = () => {
-      //Iterate through allEnemies array. Reset if enemy within 40px.
-      for (let i = 0; i < allEnemies.length; i++) {
-          if (Math.abs(player.x - allEnemies[i].x) <= 50) {
-              if (Math.abs(player.y - allEnemies[i].y) <= 50) {
-                  player.lives--
-                  player.reset()
-              }
-          }
-      }
-      for (let i = 0; i < allPaintbrush.length; i++) {
-          if (Math.abs(player.x - allPaintbrush[i].x) <= 100) {
-              if (Math.abs(player.y - allPaintbrush[i].y) <= 30){
-                player.lives--
-                player.reset()
-              }
-          }
-      }
-  }
-
-// Place all enemy objects in an array called allEnemies
-var allEnemies = []
-// While there are fewer than 4 bugs, create new enemy and push into allEnemies
-while (allEnemies.length < 3) {
+var allEnemies = [] // Place all enemy objects in an array called allEnemies
+while (allEnemies.length < 3) { // While there are fewer than 4 bugs, create new enemy and push into allEnemies
   allEnemies.push(new Palette())
 }
-// Place the player object in a variable called player
-var allPaintbrush = []
+
+var allPaintbrush = [] // Place the player object in a variable called player
 
 while (allPaintbrush.length < 3) {
   allPaintbrush.push(new Paintbrush)
 }
-// Create instance of player
-var player = new Player()
-// Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', e => {
+
+var player = new Player() // Create instance of player
+
+document.addEventListener('keyup', e => { // Player.handleInput() method. You don't need to modify this.
     const allowedKeys = {
         37: 'left',
         38: 'up',
