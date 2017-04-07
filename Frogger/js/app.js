@@ -1,12 +1,11 @@
+// Render all objects at beginning of program
 Object.prototype.render = function () {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y)
   ctx.fillStyle = 'white' // render score and lives on top of screen
-  ctx.clearRect(0,0,1000,50)
+  ctx.clearRect(0,0,1000,50) // Clear rectangle at top of canvas
   ctx.font = "30px Courier"
   ctx.fillStyle = 'red'
   ctx.fillText(`BOBS LEFT: ${this.lives}`, 0, 45)
-  // ctx.fillStyle = 'black'
-  // ctx.fillText(`Level: ${player.level}`, 220, 45)
   ctx.fillStyle = 'orange'
   ctx.fillText(`SCORE: ${this.score}`, 350, 45)
 // Show game over message when no lives left, reload page
@@ -15,13 +14,14 @@ Object.prototype.render = function () {
     ctx.fillStyle = 'red'
     ctx.fillText(`RIP BOB`,45, 400)
     setTimeout(function() {
-      window.location.reload()}, 2500)
-    }
+      window.location.reload()
+    }, 2000)
+  } // Show message at beginning of game, while player has 3 lives
   if (this.lives === 3) {
     ctx.font = "35px Courier"
     ctx.fillStyle = 'white'
     ctx.fillText(`DON\'T LET BOB GET HIT!`, 25, 100)
-  }
+  } // Show message warning 1 life left
   if (this.lives === 1) {
     ctx.font = "35px Courier"
     ctx.fillStyle = 'white'
@@ -61,14 +61,14 @@ class Paintbrush {
   }
 
   update(dt) {
-    // keeps the enemy moving until it crosses off screen, then resets position
+    // Keeps the enemy moving until it crosses off screen, then resets position
     if(this.x >= -100) {
       this.x -= this.speed * dt
     } else {
       this.reset()
     }
   }
-
+    // Reset paintbrushes when they go off the screen, generate
   reset() {
     this.x = 600
     this.y = Math.floor(Math.random() * (350 - 200)) + 200
@@ -85,15 +85,15 @@ class Player {
     this.sprite = 'images/bob-ross.png'
   }
 
-  handleInput(inputKey) {
+  handleInput(e) {
 
-    if (inputKey === 'left' && this.x > 0) {
+    if (e === 'left' && this.x > 0) {
       this.x -= 50
-    } else if (inputKey === 'right' && this.x < 400) {
+    } else if (e === 'right' && this.x < 400) {
       this.x += 50
-    } else if (inputKey === 'down' && this.y < 600) {
+    } else if (e === 'down' && this.y < 600) {
       this.y += 50
-    } else if (inputKey === 'up') {
+    } else if (e === 'up') {
         if (this.y < 0) {
           this.reset()
         } else {
@@ -150,7 +150,6 @@ while (allPaintbrush.length < 3) {
 }
 // Create instance of player
 var player = new Player()
-// This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
 document.addEventListener('keyup', e => {
     const allowedKeys = {
