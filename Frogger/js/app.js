@@ -133,8 +133,8 @@ class Player {
     this.y = 625
   }
 }
-
-var allEnemies = [] // Place all enemy objects in an array called allEnemies
+// Place all enemy objects in an array called allEnemies
+var allEnemies = []
 while (allEnemies.length < 3) { // While there are fewer than 4 bugs, create new enemy and push into allEnemies
   allEnemies.push(new Palette())
 }
