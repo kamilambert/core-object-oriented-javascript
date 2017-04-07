@@ -4,11 +4,11 @@ Object.prototype.render = function () {
   ctx.clearRect(0,0,1000,50)
   ctx.font = "30px Courier"
   ctx.fillStyle = 'red'
-  ctx.fillText(`Bobs Left: ${this.lives}`, 0, 45)
+  ctx.fillText(`BOBS LEFT: ${this.lives}`, 0, 45)
   // ctx.fillStyle = 'black'
   // ctx.fillText(`Level: ${player.level}`, 220, 45)
   ctx.fillStyle = 'orange'
-  ctx.fillText(`Score: ${this.score}`, 350, 45)
+  ctx.fillText(`SCORE: ${this.score}`, 350, 45)
 // Show game over message when no lives left, reload page
   if (this.lives <= 0) {
     ctx.font = "100px Courier"
